@@ -1,7 +1,8 @@
 annotationまとめ
 @ControllerAdvice・・・@InitBinder,@ModekAttribute,@ExceptionHandlerを実装するために使うアノテーション
 @InitBinder・・・
-
+@ModekAttribute・・・
+@ExceptionHandler・・・
 
 Cでの指摘点
 ・POST時はLocationヘッダーも確認する・・・まだ
