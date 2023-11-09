@@ -24,8 +24,8 @@ public class MasterDuelController {
 
     private final MasterDuelService master_Duel_Service;
 
-    public MasterDuelController(MasterDuelService master_Duel_Service) {
-        this.master_Duel_Service = master_Duel_Service;
+    public MasterDuelController(MasterDuelService masterDuelService) {
+        this.master_Duel_Service = masterDuelService;
     }
 
     @GetMapping("/September")

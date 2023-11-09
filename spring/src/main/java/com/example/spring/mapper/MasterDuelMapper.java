@@ -12,10 +12,7 @@ import com.example.spring.controller.Deck;
 public interface MasterDuelMapper<MasterDuel> {
 
     @Select("SELECT * FROM September;")
-    static List<Deck> findAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
+    List<Deck> findAll();
 
     @Insert("INSERT INTO September (Deck, Tier) VALUES (#{deck}, #{tier});")
     int insertResultSeptember();
