@@ -2,27 +2,29 @@ package com.example.spring.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import com.example.spring.controller.Deck;
-import com.example.spring.exception.Master_Duel_Exception;
-import com.example.spring.mapper.Master_Duel_Mapper;
+import com.example.spring.exception.MasterDuelException;
+import com.example.spring.mapper.MasterDuelMapper;
 
 @Service
-public class Master_Duel_Service {
+public class MasterDuelService {
 
-    private final Master_Duel_Mapper mapper;
+    @Autowired
+    private final MasterDuelMapper mapper;
 
-    public Master_Duel_Service(Master_Duel_Mapper mapper) {
+    public MasterDuelService(MasterDuelMapper mapper) {
         this.mapper = mapper;
     }
 
     public List<Deck> getNames() {
-        return mapper.findAll();
+        return MasterDuelMapper.findAll();
     }
 
-    public String register() throws Master_Duel_Exception {
+    public String register() throws MasterDuelException {
         try {
             int resultSeptember = mapper.insertResultSeptember();
             int resultAugust = mapper.insertResultAugust();
@@ -30,14 +32,14 @@ public class Master_Duel_Service {
             if (resultSeptember > 0 && resultAugust > 0) {
                 return "登録しました。";
             } else if (resultSeptember > 0) {
-                throw new Master_Duel_Exception("resultAugustが0以下です。");
+                throw new MasterDuelException("resultAugustが0以下です。");
             } else if (resultAugust > 0) {
-                throw new Master_Duel_Exception("resultSeptemberが0以下です。");
+                throw new MasterDuelException("resultSeptemberが0以下です。");
             } else {
-                throw new Master_Duel_Exception("登録できませんでした。");
+                throw new MasterDuelException("登録できませんでした。");
             }
         } catch (Exception e) {
-            throw new Master_Duel_Exception("エラーが発生しました。", e);
+            throw new MasterDuelException("エラーが発生しました。", e);
         }
     }
 

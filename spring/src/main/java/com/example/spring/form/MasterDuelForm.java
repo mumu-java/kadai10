@@ -1,6 +1,6 @@
 package com.example.spring.form;
 
-public class Master_Duel_Form {
+public class MasterDuelForm {
 
     private String deck;
     private int tier;

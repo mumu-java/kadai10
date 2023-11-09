@@ -3,7 +3,6 @@ package com.example.spring.controller;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,38 +13,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.spring.form.Master_Duel_Form;
-import com.example.spring.mapper.Master_Duel_Mapper;
-import com.example.spring.response.Master_Duel_Response.DeckCreateResponse;
-import com.example.spring.service.Master_Duel_Service;
+import com.example.spring.form.MasterDuelForm;
+import com.example.spring.mapper.MasterDuelMapper;
+import com.example.spring.response.MasterDuelResponse.DeckCreateResponse;
+import com.example.spring.service.MasterDuelService;
 
 @RestController
 @RequestMapping("/MasterDuel")
-public class Master_Duel_Controller {
+public class MasterDuelController {
 
-    private final Master_Duel_Service master_Duel_Service;
+    private final MasterDuelService master_Duel_Service;
 
-    public Master_Duel_Controller(Master_Duel_Service master_Duel_Service) {
+    public MasterDuelController(MasterDuelService master_Duel_Service) {
         this.master_Duel_Service = master_Duel_Service;
     }
 
-    @Autowired
-    private Master_Duel_Mapper masterDuelMapper;
-
     @GetMapping("/September")
     public List<Deck> getDeckNames() {
-        List<Deck> decks = masterDuelMapper.findAll();
+        List<Deck> decks = MasterDuelMapper.findAll();
         return decks;
     }
 
     @GetMapping("/{Tier}")
     public ResponseEntity findbyTier(@PathVariable("Tier") String Tier) {
-        return new ResponseEntity(Master_Duel_Service.findByTier(Tier));
+        return new ResponseEntity(MasterDuelService.findByTier(Tier));
     }
 
     @PostMapping("/September")
     public ResponseEntity<DeckCreateResponse> createDeck(
-            @RequestBody @Validated Master_Duel_Form form, UriComponentsBuilder uriBuilder) {
+            @RequestBody @Validated MasterDuelForm form, UriComponentsBuilder uriBuilder) {
         // Deck クラスのインスタンス化と使用に関する処理が必要
 
         // 例: Deck クラスのインスタンスを作成し、サービスに渡して処理を行う

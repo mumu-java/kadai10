@@ -6,11 +6,16 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import com.example.spring.controller.Deck;
+
 @Mapper
-public interface Master_Duel_Mapper<MasterDuel> {
+public interface MasterDuelMapper<MasterDuel> {
 
     @Select("SELECT * FROM September;")
-    List<MasterDuel> findAll();
+    static List<Deck> findAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
 
     @Insert("INSERT INTO September (Deck, Tier) VALUES (#{deck}, #{tier});")
     int insertResultSeptember();
