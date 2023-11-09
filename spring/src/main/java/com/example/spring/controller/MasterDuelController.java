@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.spring.form.MasterDuelForm;
-import com.example.spring.mapper.MasterDuelMapper;
 import com.example.spring.response.MasterDuelResponse.DeckCreateResponse;
 import com.example.spring.service.MasterDuelService;
 
@@ -22,15 +21,15 @@ import com.example.spring.service.MasterDuelService;
 @RequestMapping("/MasterDuel")
 public class MasterDuelController {
 
-    private final MasterDuelService master_Duel_Service;
+    private final MasterDuelService masterDuelService;
 
     public MasterDuelController(MasterDuelService masterDuelService) {
-        this.master_Duel_Service = masterDuelService;
+        this.masterDuelService = masterDuelService;
     }
 
     @GetMapping("/September")
     public List<Deck> getDeckNames() {
-        List<Deck> decks = MasterDuelMapper.findAll();
+        List<Deck> decks = masterDuelService.getNames();
         return decks;
     }
 
@@ -48,7 +47,7 @@ public class MasterDuelController {
         Deck deck = new Deck();
         deck.setDeck(form.getDeck());
         deck.setTier(form.getTier());
-        master_Duel_Service.createDeck(deck);
+        masterDuelService.createDeck(deck);
 
         // URI の構築
         URI uri = uriBuilder

@@ -2,7 +2,6 @@ package com.example.spring.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +12,6 @@ import com.example.spring.mapper.MasterDuelMapper;
 @Service
 public class MasterDuelService {
 
-    @Autowired
     private final MasterDuelMapper mapper;
 
     public MasterDuelService(MasterDuelMapper mapper) {
@@ -21,7 +19,7 @@ public class MasterDuelService {
     }
 
     public List<Deck> getNames() {
-        return MasterDuelMapper.findAll();
+        return mapper.findAll();
     }
 
     public String register() throws MasterDuelException {
