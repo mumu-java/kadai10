@@ -34,8 +34,8 @@ public class MasterDuelController {
     }
 
     @GetMapping("/{Tier}")
-    public ResponseEntity findbyTier(@PathVariable("Tier") String Tier) {
-        return new ResponseEntity(MasterDuelService.findByTier(Tier));
+    public ResponseEntity<String> findbyTier(@PathVariable("Tier") String Tier) {
+        return new ResponseEntity<>(MasterDuelService.findByTier(Tier));
     }
 
     @PostMapping("/September")

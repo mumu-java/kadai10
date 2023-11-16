@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 import com.example.spring.controller.Deck;
 import com.example.spring.exception.MasterDuelException;
 import com.example.spring.mapper.MasterDuelMapper;
+import com.example.spring.response.MasterDuelResponse;
 
 @Service
 public class MasterDuelService {
 
-    private final MasterDuelMapper mapper;
+    private final MasterDuelMapper<MasterDuelResponse> mapper;
 
-    public MasterDuelService(MasterDuelMapper mapper) {
+    public MasterDuelService(MasterDuelMapper<MasterDuelResponse> mapper) {
         this.mapper = mapper;
     }
 

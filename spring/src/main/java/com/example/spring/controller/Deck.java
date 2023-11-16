@@ -5,7 +5,6 @@ public class Deck {
     private String deck;
 
     public Deck(int Tier, String deck) {
-        this.tier = tier;
         this.deck = deck;
     }
 
