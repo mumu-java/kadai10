@@ -1,11 +1,10 @@
-package com.example.spring.Controller;
+package com.example.spring.controller;
 
 public class Deck {
     private int tier;
     private String deck;
 
     public Deck(int Tier, String deck) {
-        this.tier = tier;
         this.deck = deck;
     }
 

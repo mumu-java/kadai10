@@ -1,6 +1,6 @@
-package com.example.spring.Name;
+package com.example.spring.name;
 
-public class Master_Duel_Name {
+public class MasterDuelName {
 
     private String name;
 

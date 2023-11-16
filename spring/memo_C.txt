@@ -1,0 +1,38 @@
+annotationまとめ
+@ControllerAdvice・・・@InitBinder,@ModekAttribute,@ExceptionHandlerを実装するために使うアノテーション
+@InitBinder・・・
+@ModekAttribute・・・
+@ExceptionHandler・・・
+
+Cでの指摘点
+・POST時はLocationヘッダーも確認する・・・まだ
+・パッケージ名のアルファベットは小文字のみ・・・済み
+・クラス名はパスカルケース・・・例FileNameのような単語のはじめを大文字にすることよ
+※キャメルケース・・・例fileNameのように単語のはじめを大文字でつなげること
+
+・TについてはGenericsを参照・・・設計図クラスに下記のような記述（public class PairMap<T>）をすることで、実行クラスでインスタンスを定義してインスタンス毎に変数の中身を変えることができる。
+PairMap pair = new PairMap<String>("ひとつめ", "ふたつめ");
+PairMap pair2 = new PairMap<Integer>(4, 2);
+
+public class PairMap<T> {
+
+  private T first;
+  private T second;
+
+  public T first() {
+    return this.first;
+  }
+
+  public T second() {
+    return this.second;
+  }
+
+  public PairMap(T first, T second) {
+    this.first = first;
+    this.second = second;
+  }
+}
+※<>（ダイヤモンド演算子）・・・List<・・・>のような形で使われている<・・・>に対して同じ名前の<・・・>なら省略して<>にすることができる
+
+
+
