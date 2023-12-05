@@ -2,7 +2,7 @@ package com.example.spring.service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.spring.controller.Deck;
@@ -31,7 +31,7 @@ public class MasterDuelService {
             if (resultSeptember > 0 && resultAugust > 0) {
                 return "登録しました。";
             } else if (resultSeptember > 0) {
-                throw new MasterDuelException("resultAugustが0以下です。");
+                throw new MasterDuelException("resultAが0以下です。");
             } else if (resultAugust > 0) {
                 throw new MasterDuelException("resultSeptemberが0以下です。");
             } else {
@@ -45,7 +45,18 @@ public class MasterDuelService {
     public void createDeck(Deck deck) {
     }
 
-    public static HttpStatusCode findByTier(String tier) {
-        return null;
+    public static ResponseEntity<String> findByTier(int tier) {
+        return ResponseEntity.ok("正常に終了しました。");
+    }
+
+    public void updateDeck(Deck deck, int tier) {
+        String updatedDeckName = deck.getDeck();
+        String updatedTier = String.valueOf(tier);
+
+        System.out.println("Updated Deck Name: " + updatedDeckName);
+        System.out.println("Updated Tier: " + updatedTier);
+
+        // データベースの更新処理を行う
+        mapper.updateDeck(updatedDeckName, updatedTier);
     }
 }

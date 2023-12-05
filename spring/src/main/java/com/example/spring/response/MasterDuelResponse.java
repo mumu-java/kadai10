@@ -12,4 +12,18 @@ public class MasterDuelResponse {
                     deck.getDeck());
         }
     }
+
+    public record DeckUpdateResponse(
+            String message,
+            int Tier,
+            String Deck) {
+
+        public DeckUpdateResponse(Deck deck) {
+            this(
+                    "更新しました。",
+                    deck.getTier(),
+                    deck.getDeck());
+        }
+
+    }
 }
