@@ -4,19 +4,12 @@ public class Deck {
     private int tier;
     private String deck;
 
-    public Deck(String deck) {
-        this.deck = deck;
-    }
-
-    public Deck() {
-    }
-
     public int getTier() {
         return tier;
     }
 
     public String getDeck() {
-        return deck;
+        return deck != null ? deck : "";
     }
 
     public void setDeck(String deck) {
@@ -25,5 +18,9 @@ public class Deck {
 
     public void setTier(int tier) {
         this.tier = tier;
+    }
+
+    public void setDeckName(String deckName) {
+        this.deck = deckName;
     }
 }

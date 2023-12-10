@@ -23,6 +23,6 @@ public interface MasterDuelMapper<MasterDuel> {
     int insertResultAugust();
 
     @Update("UPDATE November SET Tier = #{tier} WHERE Deck = #{deck}")
-    void updateDeck(@Param("deck") String deck, @Param("tier") String updatedTier);
+    void updateDeck(@Param("deck") String deck, @Param("tier") int updatedTier);
 
 }

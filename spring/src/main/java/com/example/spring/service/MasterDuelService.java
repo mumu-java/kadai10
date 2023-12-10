@@ -50,13 +50,11 @@ public class MasterDuelService {
     }
 
     public void updateDeck(Deck deck, int tier) {
-        String updatedDeckName = deck.getDeck();
-        String updatedTier = String.valueOf(tier);
+        // 受け取れない値を確認
+        System.out.println("Updated Deck Name: " + deck.getDeck());
+        System.out.println("Updated Tier: " + tier);
 
-        System.out.println("Updated Deck Name: " + updatedDeckName);
-        System.out.println("Updated Tier: " + updatedTier);
-
-        // データベースの更新処理を行う
-        mapper.updateDeck(updatedDeckName, updatedTier);
+        mapper.updateDeck(deck.getDeck(), tier);
     }
+
 }
