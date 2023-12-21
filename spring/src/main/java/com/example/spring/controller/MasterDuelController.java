@@ -41,12 +41,6 @@ public class MasterDuelController {
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    /*
-     * @GetMapping("/{Tier}")
-     * public ResponseEntity<String> findbyTier(@PathVariable("Tier") String Tier) {
-     * return new ResponseEntity<>(MasterDuelService.findByTier(Tier));
-     * }
-     */
     @PostMapping("/September")
     public ResponseEntity<DeckCreateResponse> createDeck(
             @RequestBody @Validated MasterDuelForm form, UriComponentsBuilder uriBuilder) {
@@ -72,6 +66,9 @@ public class MasterDuelController {
             @RequestBody @Validated MasterDuelForm form) {
 
         Deck deck = form.toDeck();
+
+        System.out.println("Controller : " + form.toDeck());
+
         masterDuelService.updateDeck(deck, tier);
 
         return ResponseEntity.ok(new DeckUpdateResponse(deck));

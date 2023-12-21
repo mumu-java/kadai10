@@ -1,23 +1,25 @@
 package com.example.spring.form;
 
 import com.example.spring.controller.Deck;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MasterDuelForm {
-    @NotBlank(message = "デッキ名は必須です")
+    @JsonProperty("Deck")
     private String deck;
-    @Min(value = 1, message = "ティアは1以上の値である必要があります")
+
+    @JsonProperty("Tier")
     private int tier;
 
     public String getDeck() {
         return deck;
     }
 
-    public void setDeck(String deck) {
-        this.deck = deck;
-    }
-
     public int getTier() {
         return tier;
+    }
+
+    public void setDeck(String deck) {
+        this.deck = deck;
     }
 
     public void setTier(int tier) {

@@ -9,7 +9,7 @@ public class Deck {
     }
 
     public String getDeck() {
-        return deck != null ? deck : "";
+        return deck;
     }
 
     public void setDeck(String deck) {
@@ -20,7 +20,9 @@ public class Deck {
         this.tier = tier;
     }
 
-    public void setDeckName(String deckName) {
-        this.deck = deckName;
+    @Override
+    public String toString() {
+        return "Deck [deck=" + deck + ", tier=" + tier + "]";
     }
+
 }
