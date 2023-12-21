@@ -3,9 +3,11 @@ package com.example.spring.controller;
 import java.net.URI;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.spring.form.MasterDuelForm;
 import com.example.spring.response.MasterDuelResponse.DeckCreateResponse;
+import com.example.spring.response.MasterDuelResponse.DeckUpdateResponse;
 import com.example.spring.service.MasterDuelService;
 
 @RestController
@@ -35,7 +38,7 @@ public class MasterDuelController {
 
     @GetMapping("/{Tier}")
     public ResponseEntity<String> findbyTier(@PathVariable("Tier") String Tier) {
-        return new ResponseEntity<>(MasterDuelService.findByTier(Tier));
+        return new ResponseEntity<String>(HttpStatus.OK);
     }
 
     @PostMapping("/September")
@@ -51,9 +54,23 @@ public class MasterDuelController {
 
         // URI の構築
         URI uri = uriBuilder
-                .path("/Master_Duel/" + form.getTier())
+                .path("/MasterDuel/" + form.getTier())
                 .build()
                 .toUri();
         return ResponseEntity.created(uri).body(new DeckCreateResponse(deck));
+    }
+
+    @PatchMapping("/November/{tier}")
+    public ResponseEntity<DeckUpdateResponse> updateDeck(
+            @PathVariable("tier") int tier,
+            @RequestBody @Validated MasterDuelForm form) {
+
+        Deck deck = form.toDeck();
+
+        System.out.println("Controller : " + form.toDeck());
+
+        masterDuelService.updateDeck(deck, tier);
+
+        return ResponseEntity.ok(new DeckUpdateResponse(deck));
     }
 }
