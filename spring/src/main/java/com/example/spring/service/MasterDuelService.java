@@ -58,4 +58,8 @@ public class MasterDuelService {
         mapper.updateDeck(deck.getDeck(), tier);
     }
 
+    public void deleteDeck(String tableName, String deck) {
+        mapper.deleteDeck(tableName, deck);
+    }
+
 }

@@ -26,4 +26,19 @@ public class MasterDuelResponse {
         }
 
     }
+
+    public record DeckDeleteResponse(
+            String message,
+            int Tier,
+            String Deck) {
+
+        public DeckDeleteResponse(Deck deck) {
+            this(
+                    "",
+                    deck.getTier(),
+                    deck.getDeck());
+        }
+
+    }
+
 }
