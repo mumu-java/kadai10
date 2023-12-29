@@ -2,6 +2,7 @@ package com.example.spring.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,4 +26,7 @@ public interface MasterDuelMapper<MasterDuel> {
     @Update("UPDATE November SET Tier = #{tier} WHERE Deck = #{deck}")
     void updateDeck(@Param("deck") String deck, @Param("tier") int updatedTier);
 
+    // テーブル名を変数で受け取れるようにする
+    @Delete("DELETE FROM ${tableName} WHERE Deck = #{deck} ")
+    void deleteDeck(@Param("tableName") String tableName, @Param("deck") String deck);
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.example.spring.form.MasterDuelForm;
 import com.example.spring.response.MasterDuelResponse.DeckCreateResponse;
+import com.example.spring.response.MasterDuelResponse.DeckDeleteResponse;
 import com.example.spring.response.MasterDuelResponse.DeckUpdateResponse;
 import com.example.spring.service.MasterDuelService;
 
@@ -72,5 +74,16 @@ public class MasterDuelController {
         masterDuelService.updateDeck(deck, tier);
 
         return ResponseEntity.ok(new DeckUpdateResponse(deck));
+    }
+
+    // テーブル名を変数で受け取れるようにする
+
+    @DeleteMapping("/{tableName}/{deck}")
+    public ResponseEntity<DeckDeleteResponse> deleteDeck(
+            @PathVariable("tableName") String tableName,
+            @PathVariable("deck") String deck) {
+
+        masterDuelService.deleteDeck(tableName, deck);
+        return ResponseEntity.noContent().build();
     }
 }
